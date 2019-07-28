@@ -2,6 +2,7 @@ const express = require("express")
 const graphqlHTTP = require("express-graphql")
 const schema = require("./schema/schema")
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 const mongoDBUris = "mongodb://shaun:ebcb6a92fbe5@ds243897.mlab.com:43897/graphql-playlist-practice"
 mongoose.connect(mongoDBUris, {
@@ -13,6 +14,7 @@ mongoose.connection.once("open", () => {
 
 const app = express()
 
+app.use(cors())
 app.use(
   "/graphql",
   graphqlHTTP({
